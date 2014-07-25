@@ -2224,7 +2224,10 @@ message separated by a space."
 
 (defun circe-command-QUERY (who)
   "Open a query with WHO."
-  (interactive "sQuery with: ")
+  (interactive
+   (list
+	(completing-read "Query with: " (circe-channel-nicks))
+	))
   (let* ((who (when (string-match "[^ ]+" who)
                 (match-string 0 who)))
          (circe-new-buffer-behavior 'ignore) ; We do this manually
